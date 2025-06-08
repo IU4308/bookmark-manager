@@ -1,0 +1,32 @@
+<div
+    class="grid gap-4 px-6 py-4 [grid-template-columns:repeat(auto-fill,minmax(240px,1fr))]"
+>
+    @for (bookmark of bookmarks(); track bookmark.id) {
+    <a href="{{ bookmark.url }}" class="flex flex-col hover:bg-base-300">
+        <div class="flex flex-col border border-secondary rounded-md">
+            <div
+                class="h-40 flex items-center justify-center bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md"
+            >
+                <span class="text-lg font-semibold">LOGO</span>
+            </div>
+            <div class="px-2 py-4">
+                <h2 class="text-lg font-semibold">{{ bookmark.title }}</h2>
+
+                <ul class="flex flex-wrap text-sm text-secondary">
+                    <li
+                        class="flex items-center after:content-['·'] after:mx-2 last:after:content-none"
+                    >
+                        Unsorted
+                    </li>
+                    <li
+                        class="flex items-center after:content-['·'] after:mx-2 last:after:content-none"
+                    >
+                        {{ bookmark.url | domain }}
+                    </li>
+                    <li class="flex items-center">Jun 6</li>
+                </ul>
+            </div>
+        </div>
+    </a>
+    }
+</div>

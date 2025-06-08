@@ -1,16 +1,38 @@
-<main class="py-4">
-    <h1 class="text-2xl font-bold mb-6 px-4">Your Bookmarks</h1>
-
-    <div class="flex flex-col">
-        @for (bookmark of bookmarks; track bookmark.id) {
-        <div
-            class="px-4 py-2 flex flex-col hover:bg-base-300 border-y border-gray-500"
-        >
-            <h2 class="text-lg font-semibold mb-2">{{ bookmark.title }}</h2>
-            <a [href]="bookmark.url" class="text-blue-500 hover:underline">{{
-                bookmark.url
-            }}</a>
+<div
+    class="flex items-center py-4 px-6 justify-between border-b border-secondary"
+>
+    <h1 class="text-xl font-bold">All Bookmarks</h1>
+    <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn m-1 flex items-center gap-2">
+            @if (viewMode === 'List') {
+            <ng-icon name="octTasklist" />
+            } @else {
+            <ng-icon name="bootstrapGrid" />
+            }
+            <span>{{ viewMode }}</span>
         </div>
-        }
+        <ul
+            tabindex="0"
+            class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32"
+        >
+            <li>
+                <a class="flex items-center" (click)="setView('List')">
+                    <ng-icon name="octTasklist" />
+                    <span>List</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center" (click)="setView('Grid')">
+                    <ng-icon name="bootstrapGrid" />
+                    <span>Grid</span>
+                </a>
+            </li>
+        </ul>
     </div>
-</main>
+</div>
+
+@switch (viewMode) { @case ('Grid') {
+<app-bookmarks-grid [bookmarks]="bookmarks" />
+} @case ('List') {
+<app-bookmarks-list [bookmarks]="bookmarks" />
+} }
