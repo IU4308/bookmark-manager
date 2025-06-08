@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root',
 })
 export class BookmarksService {
-    private readonly apiUrl = `${environment.apiUrl}/bookmarks`;
+    private readonly apiUrl = `${environment.API_URL}/bookmarks`;
 
     constructor(private http: HttpClient) {}
 
