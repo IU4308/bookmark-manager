@@ -1,0 +1,31 @@
+<div class="dropdown dropdown-end">
+    <div
+        tabindex="0"
+        role="button"
+        class="btn m-1 bg-base-100 hover:bg-base-300 flex items-center gap-2"
+    >
+        @if (viewMode() === 'List') {
+        <ng-icon name="octTasklist" />
+        } @else {
+        <ng-icon name="bootstrapGrid" />
+        }
+        <span>{{ viewMode() }}</span>
+    </div>
+    <ul
+        tabindex="0"
+        class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32"
+    >
+        <li>
+            <a class="flex items-center" (click)="changeMode('List')">
+                <ng-icon name="octTasklist" />
+                <span>List</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center" (click)="changeMode('Grid')">
+                <ng-icon name="bootstrapGrid" />
+                <span>Grid</span>
+            </a>
+        </li>
+    </ul>
+</div>

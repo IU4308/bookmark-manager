@@ -1,35 +1,7 @@
-<div
-    class="flex items-center py-4 px-6 justify-between border-b border-secondary"
->
-    <h1 class="text-xl font-bold">All Bookmarks</h1>
-    <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn m-1 flex items-center gap-2">
-            @if (viewMode === 'List') {
-            <ng-icon name="octTasklist" />
-            } @else {
-            <ng-icon name="bootstrapGrid" />
-            }
-            <span>{{ viewMode }}</span>
-        </div>
-        <ul
-            tabindex="0"
-            class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32"
-        >
-            <li>
-                <a class="flex items-center" (click)="setView('List')">
-                    <ng-icon name="octTasklist" />
-                    <span>List</span>
-                </a>
-            </li>
-            <li>
-                <a class="flex items-center" (click)="setView('Grid')">
-                    <ng-icon name="bootstrapGrid" />
-                    <span>Grid</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<app-bookmarks-header
+    [viewMode]="viewMode"
+    (viewModeChange)="setView($event)"
+/>
 
 @switch (viewMode) { @case ('Grid') {
 <app-bookmarks-grid [bookmarks]="bookmarks" />
