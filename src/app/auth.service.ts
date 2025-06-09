@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private readonly API = 'http://localhost:3000/auth';
+    private readonly API = `${environment.API_URL}/auth`;
 
     constructor(private http: HttpClient) {}
 
