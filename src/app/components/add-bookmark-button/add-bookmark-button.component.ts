@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, output } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -38,14 +38,16 @@ export class AddBookmarkButtonComponent {
         (document.getElementById('my_modal_1') as HTMLDialogElement)?.close();
     }
 
+    bookmarkAdded = output();
+
     addBookmark() {
         if (this.form.invalid) return;
         const url = this.form.value.url.trim();
         this.http.post(`${environment.API_URL}/bookmarks`, { url }).subscribe({
             next: () => {
-                alert('Bookmark added!');
                 this.form.reset();
                 this.closeModal();
+                this.bookmarkAdded.emit();
             },
             error: () => alert('Failed to add bookmark'),
         });

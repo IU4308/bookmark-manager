@@ -2,11 +2,25 @@
     @for (bookmark of bookmarks(); track bookmark.id) {
     <a
         href="{{ bookmark.url }}"
-        class="p-4 flex flex-col hover:bg-base-300 border-y border-gray-500"
+        class="relative group p-4 flex flex-col hover:bg-base-300 border-y border-gray-500"
     >
+        <button
+            type="button"
+            class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity btn btn-xs btn-error"
+            (click)="onDelete(bookmark.id); $event.preventDefault()"
+        >
+            Delete
+        </button>
         <div class="flex gap-4">
-            <ng-icon class="mt-2 text-xl" name="octMarkGithub" />
-            <div class="">
+            <img
+                [ngSrc]="bookmark.image"
+                width="100"
+                height="150"
+                alt="{{ bookmark.title }}"
+                class="w-30 h-30 rounded object-cover"
+                loading="lazy"
+            />
+            <div>
                 <h2 class="text-lg font-semibold">{{ bookmark.title }}</h2>
 
                 <ul class="flex text-sm text-secondary">
@@ -20,7 +34,9 @@
                     >
                         {{ bookmark.url | domain }}
                     </li>
-                    <li class="flex items-center">Jun 6</li>
+                    <li class="flex items-center">
+                        {{ bookmark.createdAt | date : 'MMM d' }}
+                    </li>
                 </ul>
             </div>
         </div>

@@ -12,7 +12,7 @@
             />
         </div>
         <div>
-            <app-add-bookmark-button />
+            <app-add-bookmark-button (bookmarkAdded)="bookmarkAdded.emit()" />
         </div>
     </div>
     <div

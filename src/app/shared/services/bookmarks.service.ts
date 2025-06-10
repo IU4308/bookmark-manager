@@ -15,4 +15,8 @@ export class BookmarksService {
     getBookmarks(): Observable<Bookmark[]> {
         return this.http.get<Bookmark[]>(this.apiUrl);
     }
+
+    deleteBookmark(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    }
 }

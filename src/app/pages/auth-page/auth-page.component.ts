@@ -40,6 +40,7 @@ export class AuthPageComponent {
                 const decodedToken = this.authService.decodeToken(
                     res.access_token
                 );
+                console.log('Decoded Token:', decodedToken);
                 this.router.navigate([`/${decodedToken.sub}`]);
             },
             error: () => alert('Invalid credentials'),

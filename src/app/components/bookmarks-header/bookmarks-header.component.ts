@@ -14,4 +14,6 @@ import { AddBookmarkButtonComponent } from '../add-bookmark-button/add-bookmark-
 export class BookmarksHeaderComponent {
     viewMode = input<'Grid' | 'List'>('List');
     viewModeChange = output<'Grid' | 'List'>();
+
+    bookmarkAdded = output();
 }

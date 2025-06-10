@@ -1,10 +1,17 @@
 <app-bookmarks-header
     [viewMode]="viewMode"
     (viewModeChange)="setView($event)"
+    (bookmarkAdded)="fetchBookmarks()"
 />
 
 @switch (viewMode) { @case ('Grid') {
-<app-bookmarks-grid [bookmarks]="bookmarks" />
+<app-bookmarks-grid
+    [bookmarks]="bookmarks"
+    (bookmarkDeleted)="deleteBookmark($event)"
+/>
 } @case ('List') {
-<app-bookmarks-list [bookmarks]="bookmarks" />
+<app-bookmarks-list
+    [bookmarks]="bookmarks"
+    (bookmarkDeleted)="deleteBookmark($event)"
+/>
 } }

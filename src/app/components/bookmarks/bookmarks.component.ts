@@ -25,13 +25,25 @@ export class BookmarksComponent {
     constructor(private bookmarksService: BookmarksService) {}
 
     ngOnInit() {
+        this.fetchBookmarks();
+    }
+
+    fetchBookmarks() {
         this.bookmarksService.getBookmarks().subscribe({
             next: (data) => {
                 this.bookmarks = data;
+                console.log('Bookmarks loaded:', this.bookmarks);
             },
             error: (err) => {
                 console.error('Failed to load bookmarks', err);
             },
+        });
+    }
+
+    deleteBookmark(id: number) {
+        this.bookmarksService.deleteBookmark(id).subscribe({
+            next: () => this.fetchBookmarks(),
+            error: () => alert('Failed to delete bookmark'),
         });
     }
 
